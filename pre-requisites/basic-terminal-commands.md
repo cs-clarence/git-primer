@@ -7,8 +7,9 @@ Windows have similarly-named commands with similar functionality in PowerShell b
 `Git Bash` is included if you install the [official Windows installer of Git](../README.md#windows).
 
 The advantage of using `Git Bash` is that if you ever try to switch to a Linux or MacOS system, you have the same commands available so you don't have to relearn them.
-
-This tutorial in done on Windows, so you will see Windows paths. However, the only difference is that Windows paths start with a driver letter (like `C:`) and the path separator is a backslash `\` instead of a forward slash `/`.
+<br>
+<br>
+<br>
 
 ## pwd
 
@@ -19,13 +20,16 @@ pwd
 ```
 
 - Short for "print (current) working directory".
-- The **current working directory** is the directory that the terminal is currently running in.
+- The **current working directory** is the directory where the terminal is currently running in.
 - The current working directory influences how files and directories are referenced through relative paths.
 
 ![git-bash-pwd](images/git-bash-pwd.png)
 
 - Most of the time, `pwd` is not needed because most terminals already show it in their prompts.
   ![terminal-cwd-display](images/terminal-cwd-display.png)
+  <br>
+  <br>
+  <br>
 
 ## cd
 
@@ -42,6 +46,9 @@ cd C:/
 - This command changes the current working directory to the given path.
 
 ![cd-git-bash](images/git-bash-cd.png)
+<br>
+<br>
+<br>
 
 ## ls
 
@@ -66,6 +73,10 @@ ls -a
 
 > In Linux, and MacOS systems, files and folders that start with a `.` are considered hidden. That's why, in the above examples, `ls` didn't show `.hidden-file.txt` until we rerun the command with the `-a` flag.
 
+<br>
+<br>
+<br>
+
 ## mkdir
 
 ```
@@ -79,6 +90,10 @@ mkdir new-directory
 - As the name suggests, this command creates a new directory in the current working directory.
 
 ![git-bash-mkdir](images/git-bash-mkdir.png)
+
+<br>
+<br>
+<br>
 
 ## rm
 
@@ -106,6 +121,10 @@ rm -rf [directory]
 
 ![git-bash-rm-rf](images/git-bash-rm-rf.png)
 
+<br>
+<br>
+<br>
+
 ## clear
 
 ```
@@ -115,6 +134,9 @@ clear
 - Clears the terminal screen.
 - This is useful for clearing the terminal screen if it's getting too cluttered with text.
 
+<br>
+<br>
+<br>
 If you know how relative and absolute paths work, you can skip the next section.
 
 ## More On Paths
@@ -123,23 +145,46 @@ Paths describe the location of a file or directory in the file system.
 
 ### Absolute Paths
 
-- Absolute paths describe how to get to a file or directory starting from the root of the file system.
-- Examples are:
+- Absolute paths describe how to get to a file or directory starting from a root directory.
+- The most common root directory is the root of the file system.
 
-  - For Windows:
-    ```
-    C:\Users\John\Documents\GitHub\git-primer\README.md
-    ```
-  - For Linux and MacOS:
+  - Examples are:
+
+    - For Windows:
+      ```
+      C:\Users\John\Documents\GitHub\git-primer\README.md
+      ```
+    - For Linux and MacOS:
+
+      ```
+      /Users/John/Documents/GitHub/git-primer/README.md
+      ```
+
+    - In the Windows case, the root of the file system prefixed with a drive letter like `C:\`
+      ![fs-root](images/fs-root.png)
+    - In the Linux and MacOS case, the root is simply `/`.
+
+- Another type of root is the user's home directory. `~` is a shortcut for the user's home directory.
+
+  > On Windows, the user home directory is usually located at `C:\Users\[Your Username]`. On Linux and MacOS, it's usually located at `/home/[Your Username]`.
+
+  - Examples:
+
+    - For Windows:
 
     ```
-    /Users/John/Documents/GitHub/git-primer/README.md
+    ~\Documents\GitHub\git-primer\README.md
     ```
 
-  - In the Windows case, the root of the file system prefixed with a drive letter. `C:\`
-  - In the Linux and MacOS case, the root is simply `/`.
+    - For Linux and MacOS:
 
-- Because absolute paths are always relative to the root path, no matter where the current working directory is, the path `C:\File\File.txt` will refer to the same file.
+    ```
+    ~/Documents/GitHub/git-primer/README.md
+    ```
+
+  ![home-root](images/home-root.png)
+
+- Because absolute paths are always relative to a root path, no matter where the current working directory is, the path `C:\File\File.txt` will refer to the same file.
   Unlike a relative path, like `./File.txt`, which could be a different file depending on the current working directory.
 
 ### Relative Paths
@@ -190,7 +235,3 @@ Paths describe the location of a file or directory in the file system.
   - For example, given the directory `MD2`, if you're current working directory is`F:\Files\MD\`, then `..\MD2` is a directory relative to the `Files` directory (which is `MD`'s parent directory), that is: it is stored inside the `Files` directory. In other words, `..\README.md` refers to the file which is stored in the same folder as the current working directory `MD`.
     ![path-relative-2](images/path-relative-2.png)
   - If we would reference `README.md` using an absolute path, it would be `F:\Files\README.md`.
-
-Let's put these knowledge into practice.
-
-![using-paths](images/using-paths.png)

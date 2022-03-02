@@ -2,11 +2,11 @@
 
 For those of you who are new to Git, or version control systems in general, this repository contains a primer on how to use Git, the most popular version control system.
 
-The steps shown in this primer are done through the command line/terminal. It assumes that you know these commands work: `ls`, `cd`, `pwd`, `rm`, and `mkdir`. These commands are readily available on Linux, and MacOS.
+The steps shown in this primer are done through the command line/terminal. It assumes that you know how these commands work: `ls`, `cd`, `pwd`, `rm`, and `mkdir`. They are available on Linux, and MacOS.
 
 > If you you are not familiar with these commands, [read this](./pre-requisites/basic-terminal-commands.md) first.
 
-On Windows, on the other hand, you have similarly named commands which, for the most part, is similar enough to those on Linux and MacOS systems. You can use them as long as the command doesn't need a flag because they are different to those found on the other two systems:
+On Windows, you have similarly-named commands which, for the most part, is similar enough to those on Linux and MacOS systems. You can use them as long you don't pass them flags because they are different to those found on the other two systems:
 
 > For example, to list all the files inside a directory, including hidden ones, you can run the following command on Linux and MacOS systems:
 >
@@ -167,10 +167,36 @@ Untracked files:
 
 > If you turned an existing non-empty folder into a repository, it will list all the files in the folder.
 
-The output revealed two concepts that are important to Git, branches and commits. Branches will be discussed in detail later in this article. For now, let's focus on commits instead.
+The output revealed two concepts that are important to Git, **branches** and **commits**. But before we tackle these concepts, let's talk about how tracking works in git first.
+
+In our newly created repository, all our files are untracked by default. We need to tell git that we want to track them.
+
+This is done using the command:
+
+```
+git add [file/directory]
+```
+
+Since our repository is small, we can just name the file that we want to track.
+
+```
+git add README.md
+```
+
+But if we had a bigger repository, we can't just manually add the files one by one. That would be tedious.
+
+Instead we can use a `glob pattern` in place of the file name.
+
+```
+git add *
+```
+
+> We call also use `git add .` or `git add -A` which does the same thing as the `git add *` command.
+
+The `*` glob pattern is called a wildcard, and it will match all the files in the current directory so we don't have to list all the files manually.
+
+TODO: Continue this shit
 
 If you ever played a game before, like an RPG game or any games that uses saves or checkpoints, you more or less know what a commit is. A commit is basically a save state for the repository.
 
 A newly initialized repository has no commits by default. That's why you see the message "No commits yet", and that's also why all the files inside the folder are listed as untracked.
-
-TODO: Continue this shit
