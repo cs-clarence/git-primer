@@ -167,7 +167,7 @@ Untracked files:
         README.md
 ```
 
-> If you turned an existing non-empty folder a a repository, it will list all the files in the folder.
+> If you turned an existing non-empty folder into a repository, it will list all the files in the folder.
 
 The output revealed two concepts that are important to Git, branches and commits. Branches will be discussed in detail later in this article. For now, let's focus on commits instead.
 
