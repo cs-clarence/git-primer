@@ -4,9 +4,11 @@ These are terminal commands that are used throughout this primer. These commands
 
 Windows have similarly-named commands with similar functionality in PowerShell but they have use flags that are different from their Linux and MacOS counterpart. You can use `Git Bash` on Windows to use the actual same commands found on Linux and MacOS.
 
+`Git Bash` is included if you install the [official Windows installer of Git](../README.md#windows).
+
 The advantage of using `Git Bash` is that if you ever try to switch to a Linux or MacOS system, you have the same commands available so you don't have to relearn them.
 
-This tutorial in done on Windows, so you will see Windows paths.
+This tutorial in done on Windows, so you will see Windows paths. However, the only difference is that Windows paths start with a driver letter (like `C:`) and the path separator is a backslash `\` instead of a forward slash `/`.
 
 ## pwd
 
@@ -18,11 +20,14 @@ pwd
 
 - Short for "print (current) working directory".
 - The **current working directory** is the directory that the terminal is currently running in.
-- The current working directory influences how files and directories are referenced and shown in the terminal.
+- The current working directory influences how files and directories are referenced through relative paths.
 
 ![git-bash-pwd](images/git-bash-pwd.png)
 
-### cd
+- Most of the time, `pwd` is not needed because most terminals already show it in their prompts.
+  ![terminal-cwd-display](images/terminal-cwd-display.png)
+
+## cd
 
 Basic Usage:
 
@@ -34,13 +39,11 @@ cd C:/
 ```
 
 - Short for "change directory" or "change directory to".
-- As the name implies, this command changes the current working directory.
+- This command changes the current working directory to the given path.
 
 ![cd-git-bash](images/git-bash-cd.png)
 
-TODO: Add more information about the `cd` command.
-
-### ls
+## ls
 
 Basic Usage:
 
@@ -63,10 +66,10 @@ ls -a
 
 > In Linux, and MacOS systems, files and folders that start with a `.` are considered hidden. That's why, in the above examples, `ls` didn't show `.hidden-file.txt` until we rerun the command with the `-a` flag.
 
-### mkdir
+## mkdir
 
 ```
-mkdir [directory]
+mkdir [directory-name]
 
 // example:
 mkdir new-directory
@@ -77,7 +80,7 @@ mkdir new-directory
 
 ![git-bash-mkdir](images/git-bash-mkdir.png)
 
-### rm
+## rm
 
 ```
 rm [file/folder]
@@ -95,15 +98,15 @@ rm file1.txt
 
 ![git-bash-error-message](images/git-bash-rm-error.png)
 
-- This is because a directory might have files inside it. You need to pass a flag `-r` to to tell `rm` to recursively delete the folder and all of its contents.
+- This is because a directory might have files inside it will also be deleted along the directory. You need to pass a flag `-rf` to to tell `rm` to recursively force delete the folder and all of its contents.
 
 ```
-rm -r [directory]
+rm -rf [directory]
 ```
 
-![git-bash-rm-r](images/git-bash-rm-r.png)
+![git-bash-rm-rf](images/git-bash-rm-rf.png)
 
-### clear
+## clear
 
 ```
 clear
@@ -111,3 +114,83 @@ clear
 
 - Clears the terminal screen.
 - This is useful for clearing the terminal screen if it's getting too cluttered with text.
+
+If you know how relative and absolute paths work, you can skip the next section.
+
+## More On Paths
+
+Paths describe the location of a file or directory in the file system.
+
+### Absolute Paths
+
+- Absolute paths describe how to get to a file or directory starting from the root of the file system.
+- Examples are:
+
+  - For Windows:
+    ```
+    C:\Users\John\Documents\GitHub\git-primer\README.md
+    ```
+  - For Linux and MacOS:
+
+    ```
+    /Users/John/Documents/GitHub/git-primer/README.md
+    ```
+
+  - In the Windows case, the root of the file system prefixed with a drive letter. `C:\`
+  - In the Linux and MacOS case, the root is simply `/`.
+
+- Because absolute paths are always relative to the root path, no matter where the current working directory is, the path `C:\File\File.txt` will refer to the same file.
+  Unlike a relative path, like `./File.txt`, which could be a different file depending on the current working directory.
+
+### Relative Paths
+
+- Relatives paths describe how to get to a file or directory from the current working directory.
+- Examples are:
+
+  - For Windows:
+
+    ```
+    .
+    .\
+    .\README.md
+    README.md
+    ..
+    ..\
+    ..\README.md
+    ```
+
+  - For Linux and MacOS:
+
+    ```
+    .
+    ./
+    ./README.md
+    README.md
+    ..
+    ../
+    ../README.md
+    ```
+
+* The paths `.`, `.\` (Windows), `./` (Linux and MacOS) are equivalent, they all refer to the current working directory.
+
+![cwd](images/cwd.png)
+
+- Paths without a prefix like `README.md` and those that are prefixed with a `./` or `.\` (Windows) like `./README.md` or `.\README.md` (Windows) are all relative to the current working directory.
+
+  - For example, given the file `README.md`, if you're current working directory is`F:\Files\MD\`, then `.\README.md` or `README.md` is a file relative to the `MD` directory, that is: it is stored inside the `MD` directory.
+    ![](images/path-relative-1.png)
+  - If we would reference `README.md` using an absolute path, it would be `F:\Files\MD\README.md`.
+
+* The paths `..`, `..\` (Windows), `../` (Linux and MacOS) are also equivalent, they all refer to the `parent directory`. The parent directory is the directory that contains current working directory.
+  - If the current working directory is `F:\Files\MD\`, then it's parent directory is `F:\Files\`
+  - When used with `cd`, it effectively moves up one directory. You can even chain them, if you run `cd ../../` it will move two directories up.
+    ![cwd-parent](images/cwd-parent.png)
+
+- Paths that are prefixed with a `../` or `..\` are relative to the parent directory.
+  - For example, given the directory `MD2`, if you're current working directory is`F:\Files\MD\`, then `..\MD2` is a directory relative to the `Files` directory (which is `MD`'s parent directory), that is: it is stored inside the `Files` directory. In other words, `..\README.md` refers to the file which is stored in the same folder as the current working directory `MD`.
+    ![path-relative-2](images/path-relative-2.png)
+  - If we would reference `README.md` using an absolute path, it would be `F:\Files\README.md`.
+
+Let's put these knowledge into practice.
+
+![using-paths](images/using-paths.png)

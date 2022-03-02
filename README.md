@@ -4,9 +4,9 @@ For those of you who are new to Git, or version control systems in general, this
 
 The steps shown in this primer are done through the command line/terminal. It assumes that you know these commands work: `ls`, `cd`, `pwd`, `rm`, and `mkdir`. These commands are readily available on Linux, and MacOS.
 
-> If you don't know them yet, or you don't know how to use the terminal in general, [read this](./pre-requisites/basic-terminal-commands.md) first.
+> If you you are not familiar with these commands, [read this](./pre-requisites/basic-terminal-commands.md) first.
 
-On Windows, on the other hand, you have similarly named commands which, for the most part, is similar enough to those on Linux and MacOS systems that you can use them as long as the command doesn't need a flag because they are different to those found on the other two systems:
+On Windows, on the other hand, you have similarly named commands which, for the most part, is similar enough to those on Linux and MacOS systems. You can use them as long as the command doesn't need a flag because they are different to those found on the other two systems:
 
 > For example, to list all the files inside a directory, including hidden ones, you can run the following command on Linux and MacOS systems:
 >
@@ -69,7 +69,7 @@ git version 2.35.1.windows.2
 
 ## Git Repositories
 
-Basically, a Git repository is a directory where it's contents are tracked. Git tracks the contents of a repository by keeping a record of all the changes that have been made to the files in the repository.
+Basically, a Git repository is a directory where it's contents are tracked. Git tracks the contents of a repository by keeping a record of all their changes.
 
 There's **two types** of repositories: **local** and **remote**:
 
@@ -77,8 +77,6 @@ There's **two types** of repositories: **local** and **remote**:
 - **Remote repositories** are stored on a server somewhere, and are used to store code that you want to share with others.
 
 [**Github**](https://github.com/) is platform that can be used to host remote repositories, and it is the most popular one at that.
-
-Local repositories can be linked to an upstream remote repository.
 
 ## Creating a local repository
 
@@ -126,12 +124,12 @@ git config --local user.name "Your Name"
 git config --local user.email "Your Email"
 ```
 
-We could add more configs here, but git only requires the `user.name` and `user.email` configs. The command `git config --local` will store the configs in the current repository in is called in.
+We could add more configs here, but git only requires the `user.name` and `user.email` configs, it's enough for now. The command `git config --local` will store the configs in the current repository in is called in.
 
 Storing the config in the current repository means that you need to also configure every other repositories you create.
 
 If you want to have a config for the current operating system user, you can use `git config --global` instead.
-This will store the config in your user home directory so that you don't have to configure every repository you create.
+This will store the configs in your user home directory so you don't have to run config commands every time you create a repository.
 
 ## Adding Files To A Repository
 
