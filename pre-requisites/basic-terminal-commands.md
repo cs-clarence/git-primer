@@ -38,6 +38,8 @@ cd C:/
 
 ![cd-git-bash](images/git-bash-cd.png)
 
+TODO: Add more information about the `cd` command.
+
 ### ls
 
 Basic Usage:

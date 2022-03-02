@@ -126,7 +126,7 @@ git config --local user.name "Your Name"
 git config --local user.email "Your Email"
 ```
 
-We could add more configs here, but git only requires the `user.name` and `user.email` configs. This will store `git config --local` will store the configs in the current repository in is called in.
+We could add more configs here, but git only requires the `user.name` and `user.email` configs. The command `git config --local` will store the configs in the current repository in is called in.
 
 Storing the config in the current repository means that you need to also configure every other repositories you create.
 
