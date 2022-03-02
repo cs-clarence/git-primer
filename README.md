@@ -114,6 +114,25 @@ The directory is now a Git repository that can be tracked for changes.
 
 ## Configuring A Local Repository
 
+Before we continue any further, we should configure our repository first. Git requires that we configure our repository before we can `commit` to it.
+
+Run both of this commands in the same directory:
+
+```
+git config --local user.name "Your Name"
+```
+
+```
+git config --local user.email "Your Email"
+```
+
+We could add more configs here, but git only requires the `user.name` and `user.email` configs. This will store `git config --local` will store the configs in the current repository in is called in.
+
+Storing the config in the current repository means that you need to also configure every other repositories you create.
+
+If you want to have a config for the current operating system user, you can use `git config --global` instead.
+This will store the config in your user home directory so that you don't have to configure every repository you create.
+
 ## Adding Files To A Repository
 
 After you initialize a repository, all its files can be tracked Git. And once tracked, all changes to the content of the tracked files will be reported.
@@ -155,3 +174,5 @@ The output revealed two concepts that are important to Git, branches and commits
 If you ever played a game before, like an RPG game or any games that uses saves or checkpoints, you more or less know what a commit is. A commit is basically a save state for the repository.
 
 A newly initialized repository has no commits by default. That's why you see the message "No commits yet", and that's also why all the files inside the folder are listed as untracked.
+
+TODO: Continue this shit
