@@ -340,6 +340,8 @@ nothing to commit, working tree clean
 
 Remember that when we stage a file, git creates a copy of the file in the index tree.
 
-Committing will also create a new copy of the file but it will be stored in the `HEAD`/`HEAD tree`.
+Committing changes will also create a new copy of the file but it is based on the index tree and will be stored in the `HEAD`/`HEAD tree`.
 
-In this instances, we now have 3 copies of the `README.md` file.
+> In git, there's at least three trees present: the `HEAD tree`, the `index tree`, and the `working tree`. For more information, see [The Three Trees](./additional/the-three-trees.md)
+
+In this instance, we now have 3 copies of the `README.md` file, one for each tree.
