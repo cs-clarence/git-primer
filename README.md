@@ -2,9 +2,15 @@
 
 For those of you who are new to Git, or version control systems in general, this repository contains a primer on how to use Git, the most popular version control system.
 
+<br>
+<br>
+
 The steps shown in this primer are done through the command line/terminal. It assumes that you know how these commands work: `ls`, `cd`, `pwd`, `rm`, and `mkdir`. They are available on Linux, and MacOS.
 
 > If you you are not familiar with these commands, [read this](./pre-requisites/basic-terminal-commands.md) first.
+
+<br>
+<br>
 
 On Windows, you have similarly-named commands which, for the most part, is similar enough to those on Linux and MacOS systems. You can use them as long you don't pass them flags because they are different to those found on the other two systems:
 
@@ -16,11 +22,14 @@ On Windows, you have similarly-named commands which, for the most part, is simil
 >
 > > `ls -Force`
 
-However, if you want to use the Linux and MacOS version of those commands on Windows, you can use `Git Bash` which is included if you install the official Windows installer of Git.
+However, if you want to use the Linux and MacOS version of those commands on Windows, you can use `Git Bash` which is included if you install the [official Windows installer of Git](#windows).
 
 ![Git Bash](images/git-bash.png)
 
 It also helps to know how to use `glob patterns`.
+
+<br>
+<br>
 
 ## Installation
 
@@ -67,6 +76,9 @@ Which should return something like:
 git version 2.35.1.windows.2
 ```
 
+<br>
+<br>
+
 ## Git Repositories
 
 Basically, a Git repository is a directory where it's contents are tracked. Git tracks the contents of a repository by keeping a record of all their changes.
@@ -77,6 +89,9 @@ There's **two types** of repositories: **local** and **remote**:
 - **Remote repositories** are stored on a server somewhere, and are used to store code that you want to share with others.
 
 [**Github**](https://github.com/) is platform that can be used to host remote repositories, and it is the most popular one at that.
+
+<br>
+<br>
 
 ## Creating a local repository
 
@@ -110,6 +125,21 @@ git init
 
 The directory is now a Git repository that can be tracked for changes.
 
+We can tell that the directory is a repository by inspecting its contents:
+
+```
+ls -a
+```
+
+> We need the `-a` flag to see hidden files.
+
+![hidden-git-folder](images/hidden-git-folder.png)
+
+As you can see, there is a hidden `.git` folder inside. This is where Git keeps the information it needs like configurations, branches, commits, staged files, etc.
+
+<br>
+<br>
+
 ## Configuring A Local Repository
 
 Before we continue any further, we should configure our repository first. Git requires that we configure our repository before we can `commit` to it.
@@ -131,15 +161,20 @@ Storing the config in the current repository means that you need to also configu
 If you want to have a config for the current operating system user, you can use `git config --global` instead.
 This will store the configs in your user home directory so you don't have to run config commands every time you create a repository.
 
-## Adding Files To A Repository
+<br>
+<br>
 
-After you initialize a repository, all its files can be tracked Git. And once tracked, all changes to the content of the tracked files will be reported.
+## Staging Files
+
+After you initialize a repository, all its contents are "unstaged" by default. Files added after initializing the repositories will also be unstaged. For git to be able to track a file for changes, we need to stage it first.
 
 To put this to test, run this command first:
 
 ```
 git status
 ```
+
+> `git status` will show you details about the state of the repository.
 
 If the directory is empty, it should return something like this:
 
@@ -151,7 +186,10 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
-Try to add a file, in my case, I added a file called `README.md` to the repository.
+> If you turned an existing non-empty folder into a repository, it will list all the files in the folder.
+
+Try to create a file in repository, in my case, I created a file `README.md` that contains a single line of text:
+![README.md-1](images/README.md-1.png)
 
 Then ran `git status` again. This is what it returned:
 
@@ -160,43 +198,123 @@ On branch master
 
 No commits yet
 
-Untracked files:
+Untracked files: <============
   (use "git add <file>..." to include in what will be committed)
-        README.md
+        README.md <============
 ```
 
-> If you turned an existing non-empty folder into a repository, it will list all the files in the folder.
+As you can see, every file (we just have one here) in the repository is listed as untracked.
 
-The output revealed two concepts that are important to Git, **branches** and **commits**. But before we tackle these concepts, let's talk about how tracking works in git first.
-
-In our newly created repository, all our files are untracked by default. We need to tell git that we want to track them.
-
-This is done using the command:
+We need to stage this file first. This is done using the command:
 
 ```
 git add [file/directory]
 ```
 
-Since our repository is small, we can just name the file that we want to track.
+Since our repository is small, we can just name the file that we want to stage.
 
 ```
 git add README.md
 ```
 
-But if we had a bigger repository, we can't just manually add the files one by one. That would be tedious.
-
-Instead we can use a `glob pattern` in place of the file name.
+But if we had a bigger repository, we can't just manually add the files one by one. That would be tedious. Instead we can use a `glob pattern` in place of the file name:
 
 ```
 git add *
 ```
 
+> The `*` glob pattern is called a wildcard, and it will match all the files in the current directory so we don't have to add them manually one by one.
+
 > We call also use `git add .` or `git add -A` which does the same thing as the `git add *` command.
 
-The `*` glob pattern is called a wildcard, and it will match all the files in the current directory so we don't have to list all the files manually.
+After adding the file, we can check the status again using `git status`, this is the output:
 
-TODO: Continue this shit
+```
+On branch master
 
-If you ever played a game before, like an RPG game or any games that uses saves or checkpoints, you more or less know what a commit is. A commit is basically a save state for the repository.
+No commits yet
 
-A newly initialized repository has no commits by default. That's why you see the message "No commits yet", and that's also why all the files inside the folder are listed as untracked.
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   README.md <============
+```
+
+README.md is now staged. In this instance, we actually have a two "copies" of the file. The first copy is the one that we have in the current working directory.
+
+> In git, we refer to the current working directory as the "working tree". From now on, I'll use the term "working tree" to refer to it.
+
+After we staged the file using `git add`, Git created the second copy of the file and store it a location called the "staging area".
+
+> Staging area has other names like "index", "index tree", "staging index", or "cache". I prefer to use the "index tree" to keep it consistent with the "working tree".
+
+Git will be able to tell if we modify the file in the working tree by comparing it to the file in the index tree.
+
+To test this, I will now add another line to the copy in the working tree:
+
+![README.md-2](images/README.md-2.png)
+
+Then ran `git status` again. This is the output:
+
+```
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   README.md  <= The copy in the index tree
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md  <= The copy in the working tree
+```
+
+If we `git add` to file again, git will stage the changes, which meaning it will apply the changes in copy of the working tree to the one in the index tree. If we run `git status` again, we will see:
+
+```
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   README.md
+  // there's no unstaged changes anymore
+```
+
+> The working tree and the index tree are now in sync.
+
+<br>
+<br>
+
+## Committing Changes
+
+If you ever played a game before, like an RPG game or any games that uses saves or checkpoints, you more or less know what a commit is. A commit is basically a saved state for a repository.
+
+Just like how we can create multiple save files as we progress in a game, we can also create multiple commits as we progress in a repository.
+
+A newly initialized repository has no commits by default. That's why you see the message "No commits yet" after running `git status`.
+
+```
+On branch master
+
+No commits yet <===============
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   README.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+```
+
+Commits are used to make git "remember" a version of the contents in the repository at a certain point in time. Specifically, commits remembers the version files that are staged.
+
+> Think of the index tree/staging as place for files that we want to commit.
+
+That's why we stage the files/changes to a file first before we can commit anything.
+
+If you remember, we `git add`ed the `README.md` file
