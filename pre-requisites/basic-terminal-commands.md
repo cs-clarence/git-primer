@@ -160,7 +160,7 @@ Paths describe the location of a file or directory in the file system.
       /Users/John/Documents/GitHub/git-primer/README.md
       ```
 
-    - In the Windows case, the root of the file system prefixed with a drive letter like `C:\`
+    - In the Windows case, the root of the file system is prefixed with a drive letter like `C:\`
       ![fs-root](images/fs-root.png)
     - In the Linux and MacOS case, the root is simply `/`.
 

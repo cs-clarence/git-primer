@@ -7,12 +7,12 @@ For those of you who are new to Git, or version control systems in general, this
 
 The steps shown in this primer are done through the command line/terminal. It assumes that you know how these commands work: `ls`, `cd`, `pwd`, `rm`, and `mkdir`. They are available on Linux, and MacOS.
 
-> If you you are not familiar with these commands, [read this](./pre-requisites/basic-terminal-commands.md) first.
+> If you are not familiar with these commands, [read this first](./pre-requisites/basic-terminal-commands.md).
 
 <br>
 <br>
 
-On Windows, you have similarly-named commands which, for the most part, is similar enough to those on Linux and MacOS systems. You can use them as long you don't pass them flags because they are different to those found on the other two systems:
+On Windows, you have similarly-named commands which, for the most part, are similar enough to those on Linux and MacOS systems. You can use them as long you don't pass them flags because they are different to those found on the other two systems:
 
 > For example, to list all the files inside a directory, including hidden ones, you can run the following command on Linux and MacOS systems:
 >
@@ -311,10 +311,35 @@ Changes not staged for commit:
         modified:   README.md
 ```
 
-Commits are used to make git "remember" a version of the contents in the repository at a certain point in time. Specifically, commits remembers the version files that are staged.
+Commits are used to make git "remember" a version of the contents in the repository at a certain point in time. Specifically, git remembers the version of files that are staged. That's why we stage the files/changes to a file first before we can commit anything.
 
-> Think of the index tree/staging as place for files that we want to commit.
+> Think of the index tree/staging as an area where we prepare files/changes that we want to commit.
 
-That's why we stage the files/changes to a file first before we can commit anything.
+Since we already staged the file, we can now commit the changes. To do this, we use the command:
 
-If you remember, we `git add`ed the `README.md` file
+```
+git commit -m "commit message"
+```
+
+> Make the commit message concise but descriptive about the changes. It will help you to understand what the commit is for.
+
+It should return something like this:
+
+```
+[master (root-commit) 43e73ad] commit message
+ 1 file changed, 2 insertions(+)
+ create mode 100644 README.md
+```
+
+Run `git status` again and we should see:
+
+```
+On branch master
+nothing to commit, working tree clean
+```
+
+Remember that when we stage a file, git creates a copy of the file in the index tree.
+
+Committing will also create a new copy of the file but it will be stored in the `HEAD`/`HEAD tree`.
+
+In this instances, we now have 3 copies of the `README.md` file.
