@@ -186,7 +186,7 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
-> If you turned an existing non-empty folder into a repository, it will list all the files in the folder.
+> If you turned an existing non-empty folder into a repository, it will list all the files in the repository as `untracked`.
 
 Try to create a file in repository, in my case, I created a file `README.md` that contains a single line of text:
 ![README.md-1](images/README.md-1.png)
@@ -270,7 +270,7 @@ Changes not staged for commit:
         modified:   README.md  <= The copy in the working tree
 ```
 
-If we `git add` to file again, git will stage the changes, which meaning it will apply the changes in copy of the working tree to the one in the index tree. If we run `git status` again, we will see:
+If we `git add` to file again, it will stage the changes, which means it will apply the changes in copy of the working tree to the one in the index tree. If we run `git status` again, we will see:
 
 ```
 On branch master
